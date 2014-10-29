@@ -19,4 +19,4 @@ def get_words(sentence):
     return words
 
 def sigmoid(x):
-    return  1 / (1 + math.pow(x, -math.e))
+    return  1 / (1 + math.pow(math.e, -x))
