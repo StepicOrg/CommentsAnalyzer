@@ -3,6 +3,7 @@ __author__ = 'Zaycev Denis'
 
 import re
 import math
+from src.util.common import get_words
 
 
 not_russian_letter = re.compile("[^а-яА-Я]")
@@ -36,10 +37,6 @@ class SentimentCounter:
         return sign * count * math.log2(value) if value != 0 else 0
 
 
-def process_word(line):
-    return not_russian_letter.sub('', line).lower()
-
-
 def get_mapping(file_name, mapping=None):
     if not mapping:
         mapping = {}
@@ -64,11 +61,7 @@ def get_mapping(file_name, mapping=None):
         positive_count += 1 if positive_rate > negative_rate else 0
         negative_count += 1 if positive_rate < negative_rate else 0
 
-        for chunk in chunks[2].split(' '):
-            chunk = process_word(chunk)
-            if len(chunk) == 0:
-                continue
-
+        for chunk in get_words(chunks[2]):
             value = mapping.get(chunk)
             if value is None:
                 value = SentimentCounter()
