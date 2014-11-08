@@ -32,8 +32,8 @@ class SentimentCounter:
         if self.positive_count < self.negative_count:
             sign = -1
 
-        # TODO: here should be check that value under log is not zero
-        return sign * count * math.log2((negative_total * self.positive_count) / (positive_total * self.negative_count))
+        value = (negative_total * self.positive_count) / (positive_total * self.negative_count)
+        return sign * count * math.log2(value) if value != 0 else 0
 
 
 def process_word(line):
