@@ -1,12 +1,13 @@
 __author__ = 'Zaycev Denis'
 
 
-import re
 import math
+import collections
 from src.util.common import get_words
+from src.util.spell_checker import correct
 
 
-not_russian_letter = re.compile("[^а-яА-Я]")
+SEPARATOR = '\t'
 
 
 class SentimentCounter:
@@ -23,21 +24,50 @@ class SentimentCounter:
         else:
             self.neutral_count += 1
 
-    def get_weight(self, count, negative_total, positive_total):
+    def get_weight(self, negative_total, positive_total):
         if self.positive_count == 0 and self.negative_count == 0:
             return 0
         elif self.negative_count == 0:
-            return count * math.log2((negative_total * self.positive_count) / positive_total)
+            return math.log2((negative_total * self.positive_count) / positive_total)
 
         sign = 1
         if self.positive_count < self.negative_count:
             sign = -1
 
         value = (negative_total * self.positive_count) / (positive_total * self.negative_count)
-        return sign * count * math.log2(value) if value != 0 else 0
+        return sign * math.log2(value) if value != 0 else 0
 
 
-def get_mapping(file_name, mapping=None):
+def save_known_sentiment(file_name, negative, neutral, positive, mapping):
+    """
+    " Use this function to save prepared
+    " known_sentiments.
+    """
+    file = open(file_name, "w", encoding='utf-8')
+    for word, s_c in mapping.items():
+        file.write(word + SEPARATOR + str(s_c.get_weight(negative, positive)) + '\n')
+
+    file.close()
+
+
+def load_known_sentiments(file_name):
+    """
+    " Use this function if you already prepare
+    " known_sentiments to load.
+    """
+    model = collections.defaultdict(lambda: 1)
+
+    file = open(file_name, "r", encoding='utf-8')
+    for line in file.readlines():
+        data = line.split(SEPARATOR)
+        model[data[0]] = float(data[1])
+
+    file.close()
+
+    return model
+
+
+def get_mapping(file_name, known_word, mapping=None):
     if not mapping:
         mapping = {}
 
@@ -61,11 +91,13 @@ def get_mapping(file_name, mapping=None):
         positive_count += 1 if positive_rate > negative_rate else 0
         negative_count += 1 if positive_rate < negative_rate else 0
 
-        for chunk in get_words(chunks[2]):
-            value = mapping.get(chunk)
+        for word in get_words(chunks[2]):
+            word = correct(word, known_word)
+
+            value = mapping.get(word)
             if value is None:
                 value = SentimentCounter()
-                mapping[chunk] = value
+                mapping[word] = value
 
             value.add(positive_rate, negative_rate)
 
