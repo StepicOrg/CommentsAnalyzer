@@ -3,11 +3,16 @@ __author__ = 'Zaycev Denis'
 
 import math
 import collections
+import pymorphy2
+
 from src.util.common import get_words
 from src.util.spell_checker import correct
 
 
 SEPARATOR = '\t'
+
+
+MORPH = pymorphy2.MorphAnalyzer()
 
 
 class SentimentCounter:
@@ -93,6 +98,7 @@ def get_mapping(file_name, known_word, mapping=None):
 
         for word in get_words(chunks[2]):
             word = correct(word, known_word)
+            word = MORPH.parse(word)[0].normal_form     # TODO: needs to be improved -> select best prediction
 
             value = mapping.get(word)
             if value is None:

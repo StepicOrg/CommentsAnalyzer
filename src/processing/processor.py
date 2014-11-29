@@ -2,6 +2,7 @@ __author__ = 'Zaycev Denis'
 
 from src.util.common import get_words, sigmoid
 from src.util.sentiment_estimation import SentimentCounter
+from src.util.sentiment_estimation import MORPH
 from src.util.spell_checker import correct
 
 
@@ -15,7 +16,7 @@ def process(sentence, estimated_words, known_words):
 
     words_map = {}
     for word in corrected_words:
-        word = correct(word, known_words)
+        word = MORPH.parse(correct(word, known_words))[0].normal_form
         if word not in words_map:
             words_map[word] = 0
 
