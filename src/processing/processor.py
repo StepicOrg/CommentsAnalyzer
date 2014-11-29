@@ -12,11 +12,10 @@ DEFAULT_SENTIMENT_COUNTER = SentimentCounter()
 def process(sentence, estimated_words, known_words):
     corrected_words = []
     for word in get_words(sentence):
-        corrected_words.append(correct(word, known_words))
+        corrected_words.append(MORPH.parse(correct(word, known_words))[0].normal_form)
 
     words_map = {}
     for word in corrected_words:
-        word = MORPH.parse(correct(word, known_words))[0].normal_form
         if word not in words_map:
             words_map[word] = 0
 
