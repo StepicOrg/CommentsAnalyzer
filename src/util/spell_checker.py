@@ -4,7 +4,7 @@ import enchant
 RUSSIAN_DICTIONARY = enchant.Dict('ru_Ru')
 
 
-def correct(word, known_words):
+def correct(word):
     # TODO: improve best word selection
     if not RUSSIAN_DICTIONARY.check(word):
         suggestions = RUSSIAN_DICTIONARY.suggest(word)

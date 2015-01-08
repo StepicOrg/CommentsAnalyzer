@@ -9,10 +9,10 @@ from src.util.spell_checker import correct
 DEFAULT_SENTIMENT_COUNTER = SentimentCounter()
 
 
-def process(sentence, estimated_words, known_words):
+def process(sentence, estimated_words):
     corrected_words = []
     for word in get_words(sentence):
-        corrected_words.append(MORPH.parse(correct(word, known_words))[0].normal_form)
+        corrected_words.append(MORPH.parse(correct(word))[0].normal_form)
 
     words_map = {}
     for word in corrected_words:

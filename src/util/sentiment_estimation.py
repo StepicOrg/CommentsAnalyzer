@@ -32,12 +32,12 @@ class SentimentCounter:
     def get_weight(self, negative_total, positive_total):
         if self.positive_count == 0 and self.negative_count == 0:
             return 0
+        elif self.positive_count == 0:
+            return -math.log2(self.negative_count)
         elif self.negative_count == 0:
-            return math.log2((negative_total * self.positive_count) / positive_total)
+            return math.log2(self.positive_count)
 
-        sign = 1
-        if self.positive_count < self.negative_count:
-            sign = -1
+        sign = -1 if self.positive_count < self.negative_count else 1
 
         value = (negative_total * self.positive_count) / (positive_total * self.negative_count)
         return sign * math.log2(value) if value != 0 else 0
@@ -72,13 +72,9 @@ def load_known_sentiments(file_name):
     return model
 
 
-def get_mapping(file_name, known_word, mapping=None):
+def get_mapping(file_name, mapping=None, neutral_count=0, positive_count=0, negative_count=0):
     if not mapping:
         mapping = {}
-
-    neutral_count = 0
-    positive_count = 0
-    negative_count = 0
 
     file = open(file_name, "r", encoding='utf-8')
 
@@ -97,7 +93,7 @@ def get_mapping(file_name, known_word, mapping=None):
         negative_count += 1 if positive_rate < negative_rate else 0
 
         for word in get_words(chunks[2]):
-            word = correct(word, known_word)
+            word = correct(word)
             word = MORPH.parse(word)[0].normal_form     # TODO: needs to be improved -> select best prediction
 
             value = mapping.get(word)
@@ -109,4 +105,4 @@ def get_mapping(file_name, known_word, mapping=None):
 
     file.close()
 
-    return positive_count, neutral_count, neutral_count, mapping
+    return negative_count, neutral_count, positive_count, mapping
