@@ -1,18 +1,10 @@
 __author__ = 'Zaycev Denis'
 
-from src.util.common import get_words, sigmoid
-from src.util.sentiment_estimation import SentimentCounter
-from src.util.sentiment_estimation import MORPH
-from src.util.spell_checker import correct
+from src.util.common import sigmoid
 
 
-DEFAULT_SENTIMENT_COUNTER = SentimentCounter()
-
-
-def process(sentence, estimated_words):
-    corrected_words = []
-    for word in get_words(sentence):
-        corrected_words.append(MORPH.parse(correct(word))[0].normal_form)
+def process(text, estimated_words, text_parser):
+    corrected_words = text_parser.correct_all_words(text_parser.get_words(text))
 
     words_map = {}
     for word in corrected_words:
