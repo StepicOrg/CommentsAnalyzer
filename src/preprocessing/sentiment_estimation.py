@@ -3,31 +3,25 @@ __author__ = 'Zaycev Denis'
 import math
 import collections
 
-
-SEPARATOR = '\t'
-
-
-POSITIVE_TONALITY = 'pos'
-NEUTRAL_TONALITY = 'neu'
-NEGATIVE_TONALITY = 'neg'
+from src.util.constants import POSITIVE_TONALITY
+from src.util.constants import NEUTRAL_TONALITY
+from src.util.constants import NEGATIVE_TONALITY
 
 
-def calculate_weights(data_set, text_parser):
+def calculate_weights(comments, answers, text_parser):
     lines_processed = 0
 
     total = [0, 0, 0]
     words_count = collections.defaultdict(lambda : [0, 0, 0])
-    for data in data_set:
-        chunks = data.split(SEPARATOR)   # [tonality, text]
+    for comment, answer in zip(comments, answers):
+        total[get_index_by_key(answer)] += 1
 
-        total[get_index_by_key(chunks[0])] += 1
-
-        words = text_parser.correct_all_words(text_parser.get_words(chunks[1]))
+        words = text_parser.correct_all_words(text_parser.get_words(comment))
         for word in words:
-            words_count[word][get_index_by_key(chunks[0])] += 1
+            words_count[word][get_index_by_key(answer)] += 1
 
         for pair in text_parser.get_words_pairs(words):
-            words_count[pair][get_index_by_key(chunks[0])] += 1
+            words_count[pair][get_index_by_key(answer)] += 1
 
         lines_processed += 1
         print("Lines processed: " + str(lines_processed))
