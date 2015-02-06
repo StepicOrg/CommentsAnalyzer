@@ -6,6 +6,7 @@
 
 <h3>Training example:</h3>
 
+```python
 import src.util.file_util as f
 
 from src.util.text.language_model import RUSSIAN
@@ -22,3 +23,4 @@ n_e_classifier, p_n_classifier, model = do_training(comments, answers, text_pars
 f.dump_model(model, "<path_to_your_folder>\\estimated.txt")
 f.dump_classifier(n_e_classifier, "<path_to_your_folder>\\n_e\\model.pkl")
 f.dump_classifier(p_n_classifier, "<path_to_your_folder>\\p_n\\model.pkl")
+```
