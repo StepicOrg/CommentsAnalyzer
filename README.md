@@ -36,6 +36,9 @@ processor = Processor(n_e_classifier, p_n_classifier, model, text_parser)
 
 comment = ""
 
-processor.process(comment)
+tonality = processor.process(comment)
 ```
 The code below illustrates how to use processing logic.
+
+<h3>Note:</h3>
+The <i>answers</i> in first example and <i>tonality</i> in second could contain only 3 values: -1 - for negarive, 0 - for neutral and 1 - for positive comment.
