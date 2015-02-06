@@ -2,6 +2,8 @@ from src.util.constants import POSITIVE_TONALITY
 from src.util.constants import NEUTRAL_TONALITY
 from src.util.constants import NEGATIVE_TONALITY
 
+from src.util.constants import HAS_EMOTION
+
 from src.util.ai.machine_learning import get_words_features
 
 
@@ -13,10 +15,10 @@ class Processor:
         self.text_parser = text_parser
 
     def process(self, comment):
-        X = get_words_features(comment, self.text_parser, self.model)
-        if self.has_emotions_classifier.predict(X) == 1:
+        x = get_words_features(comment, self.text_parser, self.model)
+        if self.has_emotions_classifier.predict(x) == HAS_EMOTION:
             # Do emotions processing
-            if self.emotions_classifier.predict(X) == 1:
+            if self.emotions_classifier.predict(x) == POSITIVE_TONALITY:
                 return POSITIVE_TONALITY
             else:
                 return NEGATIVE_TONALITY
