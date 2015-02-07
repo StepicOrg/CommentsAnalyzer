@@ -1,10 +1,10 @@
-from src.util.constants import POSITIVE_TONALITY
-from src.util.constants import NEUTRAL_TONALITY
-from src.util.constants import NEGATIVE_TONALITY
+from ..util.constants import POSITIVE_TONALITY
+from ..util.constants import NEUTRAL_TONALITY
+from ..util.constants import NEGATIVE_TONALITY
 
-from src.util.constants import HAS_EMOTION
+from ..util.constants import HAS_EMOTION
 
-from src.util.ai.machine_learning import get_words_features
+from ..util.ai.machine_learning import get_words_features
 
 
 class Processor:

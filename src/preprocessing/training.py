@@ -2,16 +2,16 @@ __author__ = 'Zaycev Denis'
 
 import collections
 
-from src.util.constants import POSITIVE_TONALITY
-from src.util.constants import NEUTRAL_TONALITY
-from src.util.constants import NEGATIVE_TONALITY
+from ..util.constants import POSITIVE_TONALITY
+from ..util.constants import NEUTRAL_TONALITY
+from ..util.constants import NEGATIVE_TONALITY
 
-from src.util.constants import HAS_EMOTION
-from src.util.constants import NEUTRAL
+from ..util.constants import HAS_EMOTION
+from ..util.constants import NEUTRAL
 
-from src.preprocessing.sentiment_estimation import calculate_weights
-from src.util.ai.machine_learning import get_words_features
-from src.util.ai.model import Model
+from .sentiment_estimation import calculate_weights
+from ..util.ai.machine_learning import get_words_features
+from ..util.ai.model import Model
 from sklearn.naive_bayes import GaussianNB
 
 

@@ -1,6 +1,6 @@
 import collections
 
-from src.util.ai.model import Model
+from .ai.model import Model
 from sklearn.externals import joblib
 
 SEPARATOR = '\t'
