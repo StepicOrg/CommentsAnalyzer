@@ -3,9 +3,9 @@ __author__ = 'Zaycev Denis'
 import math
 import collections
 
-from comments_analyzer.constants import POSITIVE_TONALITY
-from comments_analyzer.constants import NEUTRAL_TONALITY
-from comments_analyzer.constants import NEGATIVE_TONALITY
+from comments_analyzer.common.constants import POSITIVE_TONALITY
+from comments_analyzer.common.constants import NEUTRAL_TONALITY
+from comments_analyzer.common.constants import NEGATIVE_TONALITY
 
 
 def calculate_weights(comments, answers, text_parser):
