@@ -1,6 +1,6 @@
 import re
 
-from src.util.text.spell_checker import correct
+from comments_analyzer.util.text.spell_checker import correct
 
 
 class TextParser:
