@@ -1,10 +1,10 @@
-from comments_analyzer.util.constants import POSITIVE_TONALITY
-from comments_analyzer.util.constants import NEUTRAL_TONALITY
-from comments_analyzer.util.constants import NEGATIVE_TONALITY
+from comments_analyzer.constants import POSITIVE_TONALITY
+from comments_analyzer.constants import NEUTRAL_TONALITY
+from comments_analyzer.constants import NEGATIVE_TONALITY
 
-from comments_analyzer.util.constants import HAS_EMOTION
+from comments_analyzer.constants import HAS_EMOTION
 
-from comments_analyzer.util.ai.machine_learning import get_words_features
+from comments_analyzer.ai.machine_learning import get_words_features
 
 
 class Processor:

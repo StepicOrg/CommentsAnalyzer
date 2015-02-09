@@ -1,7 +1,8 @@
 import collections
 
-from comments_analyzer.util.ai.model import Model
 from sklearn.externals import joblib
+
+from comments_analyzer.ai.model import Model
 
 SEPARATOR = '\t'
 

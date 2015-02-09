@@ -2,17 +2,16 @@ __author__ = 'Zaycev Denis'
 
 import collections
 
-from comments_analyzer.util.constants import POSITIVE_TONALITY
-from comments_analyzer.util.constants import NEUTRAL_TONALITY
-from comments_analyzer.util.constants import NEGATIVE_TONALITY
-
-from comments_analyzer.util.constants import HAS_EMOTION
-from comments_analyzer.util.constants import NEUTRAL
-
-from comments_analyzer.preprocessing.sentiment_estimation import calculate_weights
-from comments_analyzer.util.ai.machine_learning import get_words_features
-from comments_analyzer.util.ai.model import Model
 from sklearn.naive_bayes import GaussianNB
+
+from comments_analyzer.constants import POSITIVE_TONALITY
+from comments_analyzer.constants import NEUTRAL_TONALITY
+from comments_analyzer.constants import NEGATIVE_TONALITY
+from comments_analyzer.constants import HAS_EMOTION
+from comments_analyzer.constants import NEUTRAL
+from comments_analyzer.sentiment_estimation import calculate_weights
+from comments_analyzer.ai.machine_learning import get_words_features
+from comments_analyzer.ai.model import Model
 
 
 class Teacher:
