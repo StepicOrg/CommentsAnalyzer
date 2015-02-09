@@ -4,10 +4,11 @@ from setuptools import setup, find_packages
 
 
 README = open(os.path.join(os.path.dirname(__file__), 'README.md')).read()
+version = __import__('comments_analyzer').get_version()
 
 setup(
     name='comments-analyzer',
-    version=1.0,
+    version=version,
     packages=find_packages(),
     include_package_data=True,
     author='Zaycev Denis',
