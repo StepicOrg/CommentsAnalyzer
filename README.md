@@ -7,7 +7,7 @@
 <h3>Training example:</h3>
 
 ```python
-import src.util.file_util as f
+import comments_analyzer.common.file_util as f
 
 from comments_analyzer.text.language_model import RUSSIAN
 from comments_analyzer.text.text_parser import TextParser
