@@ -92,7 +92,7 @@ def _prepare_model(weights, count_of_features):
     words_weights = collections.defaultdict(lambda: None)
 
     # Needs to retain only maximum weights
-    weights = sorted(weights.items(), key=lambda x: abs(x[1]), reverse=True)
+    weights = sorted(weights.items(), key=lambda x: (abs(x[1]), x[0]), reverse=True)
 
     counter = 0
     for data_chunk in weights:

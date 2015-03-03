@@ -18,7 +18,7 @@ def load_model(file_name):
         chunks = line.split(SEPARATOR)
         full_data[chunks[0]] = float(chunks[1])
 
-    weights = sorted(full_data.items(), key=lambda x: abs(x[1]), reverse=True)
+    weights = sorted(full_data.items(), key=lambda x: (abs(x[1]), x[0]), reverse=True)
 
     counter = 0
     for data_chunk in weights:
