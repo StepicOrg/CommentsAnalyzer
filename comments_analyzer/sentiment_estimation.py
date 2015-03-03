@@ -9,8 +9,6 @@ from comments_analyzer.common.constants import NEGATIVE_TONALITY
 
 
 def calculate_weights(comments, answers, text_parser):
-    lines_processed = 0
-
     total = [0, 0, 0]
     words_count = collections.defaultdict(lambda : [0, 0, 0])
     for comment, answer in zip(comments, answers):
@@ -22,9 +20,6 @@ def calculate_weights(comments, answers, text_parser):
 
         for pair in text_parser.get_words_pairs(words):
             words_count[pair][get_index_by_key(answer)] += 1
-
-        lines_processed += 1
-        print("Lines processed: " + str(lines_processed))
 
     weights = collections.defaultdict(lambda : 1)
     for word, count in words_count.items():
