@@ -7,11 +7,11 @@
 <h3>Training example:</h3>
 
 ```python
-import src.util.file_util as f
+import comments_analyzer.common.file_util as f
 
-from src.util.text.language_model import RUSSIAN
-from src.util.text.text_parser import TextParser
-from src.preprocessing.training import do_training
+from comments_analyzer.text.language_model import RUSSIAN
+from comments_analyzer.text.text_parser import TextParser
+from comments_analyzer.training import do_training
 
 comments = []
 answers = []
