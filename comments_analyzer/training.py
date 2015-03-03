@@ -2,7 +2,7 @@ __author__ = 'Zaycev Denis'
 
 import collections
 
-from sklearn.naive_bayes import GaussianNB
+from sklearn.ensemble import RandomForestClassifier
 
 from comments_analyzer.common.constants import POSITIVE_TONALITY
 from comments_analyzer.common.constants import NEUTRAL_TONALITY
@@ -25,7 +25,7 @@ class Teacher:
         self.classifier = None
 
     def teach(self, count_of_features):
-        self.classifier = GaussianNB()
+        self.classifier = RandomForestClassifier()
         self.classifier.fit(self._get_training_set(), self.answers)
 
     def get_classifier(self):

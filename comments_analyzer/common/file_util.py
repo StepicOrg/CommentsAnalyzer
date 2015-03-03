@@ -1,6 +1,5 @@
 import collections
-
-from sklearn.externals import joblib
+import pickle
 
 from comments_analyzer.ai.model import Model
 
@@ -40,8 +39,10 @@ def dump_model(model, file_name):
 
 
 def load_classifier(file_name):
-    return joblib.load(file_name)
+    with open(file_name, 'rb') as f:
+        return pickle.load(f)
 
 
 def dump_classifier(classifier, file_name):
-    joblib.dump(classifier, file_name)
+    with open(file_name, 'wb') as f:
+        pickle.dump(classifier, f)
