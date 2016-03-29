@@ -15,9 +15,9 @@ setup(
     description='A simple API which could process comments',
     long_description=README,
     install_requires=[
-        'pyenchant==1.6.6',
-        'numpy==1.9.1',
-        'scipy==0.14.1',
-        'scikit-learn==0.15.2'
+        'pyenchant',
+        'numpy',
+        'scipy',
+        'scikit-learn'
     ],
 )
