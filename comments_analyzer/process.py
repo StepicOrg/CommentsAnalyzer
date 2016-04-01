@@ -16,9 +16,9 @@ class Processor:
 
     def process(self, comment):
         x = get_words_features(comment, self.text_parser, self.model)
-        if self.has_emotions_classifier.predict(x) == HAS_EMOTION:
+        if self.has_emotions_classifier.predict([x]) == [HAS_EMOTION]:
             # Do emotions processing
-            if self.emotions_classifier.predict(x) == POSITIVE_TONALITY:
+            if self.emotions_classifier.predict([x]) == [POSITIVE_TONALITY]:
                 return POSITIVE_TONALITY
             else:
                 return NEGATIVE_TONALITY

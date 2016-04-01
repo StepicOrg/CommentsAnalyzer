@@ -18,6 +18,6 @@ setup(
         'pyenchant',
         'numpy',
         'scipy',
-        'scikit-learn'
+        'scikit-learn>=0.17.0'
     ],
 )
